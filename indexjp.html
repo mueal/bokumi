@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孫福美 · 손복미 · Bokumi Son — 日本のお客様へ</title>
+<meta name="description" content="ビジネス支援・スポーツ・メディア — 韓国の現場で、貴社の仕事を支えます。孫福美 (Bokumi Son). Tokyo.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --text-dim: #5c5a55;
+    --text-faint: #a8a59e;
+    --border: rgba(26, 26, 26, 0.1);
+    --border-strong: rgba(26, 26, 26, 0.25);
+
+    /* Business — navy */
+    --biz-bg: #e8eef5;
+    --biz-border: #b8c7dc;
+    --biz-accent: #2f4d75;
+    --biz-text: #1a2c45;
+
+    /* Sports — green (한국용과 동일 톤 유지) */
+    --sports-bg: #e4eedf;
+    --sports-border: #b8d4a8;
+    --sports-accent: #4a7c3a;
+    --sports-text: #2a4a1f;
+
+    /* Media — coral (한국용과 동일 톤 유지) */
+    --media-bg: #f5e0d8;
+    --media-border: #e8b8a5;
+    --media-accent: #b85c3a;
+    --media-text: #6e2d18;
+
+    /* Game — purple */
+    --game-bg: #ede9f7;
+    --game-border: #c8bfe8;
+    --game-accent: #5d4ba8;
+    --game-text: #2d1f6e;
+
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-ja: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ja);
+    font-weight: 500;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.7;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ─── Back to top index ─── */
+  .back-link {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 100;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    transition: all 0.25s ease;
+  }
+
+  .back-link:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+
+  /* ─── Main container ─── */
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: clamp(56px, 7vw, 80px) clamp(20px, 4vw, 48px) 60px;
+  }
+
+  /* ─── Name (top) ─── */
+  .person-name {
+    text-align: center;
+    margin-bottom: clamp(32px, 4vw, 44px);
+    opacity: 0;
+    animation: fade-up 0.9s ease 0.1s forwards;
+  }
+
+  .person-name h1 {
+    font-size: clamp(24px, 3.4vw, 34px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .person-name .person-sub {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Section heading ─── */
+  .section-heading {
+    text-align: center;
+    margin-bottom: clamp(32px, 5vw, 48px);
+    opacity: 0;
+    animation: fade-up 0.9s ease 0.25s forwards;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .section-heading p {
+    font-size: clamp(12px, 1.3vw, 14px);
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Cards: 3-column on desktop ─── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.5vw, 20px);
+    margin-bottom: 56px;
+    align-items: stretch;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 3vw, 36px) clamp(18px, 2.2vw, 28px) clamp(22px, 2.6vw, 32px);
+    border: 1.5px solid;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    opacity: 0;
+    animation: fade-up 0.9s ease forwards;
+  }
+
+  .card.game {
+    background: var(--game-bg);
+    border-color: var(--game-border);
+    animation-delay: 0.4s;
+  }
+  .card.business {
+    background: var(--biz-bg);
+    border-color: var(--biz-border);
+    animation-delay: 0.7s;
+  }
+  .card.sports {
+    background: var(--sports-bg);
+    border-color: var(--sports-border);
+    animation-delay: 0.55s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -16px rgba(26, 26, 26, 0.18);
+  }
+
+  .card.game:hover { border-color: var(--game-accent); }
+  .card.business:hover { border-color: var(--biz-accent); }
+  .card.sports:hover { border-color: var(--sports-accent); }
+
+  .card-icon {
+    font-size: clamp(24px, 2.6vw, 28px);
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 2.4vw, 26px);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .card.game .card-title { color: var(--game-text); }
+  .card.business .card-title { color: var(--biz-text); }
+  .card.sports .card-title { color: var(--sports-text); }
+
+  .card-subtitle {
+    font-size: clamp(12px, 1.3vw, 13px);
+    text-align: center;
+    margin-bottom: clamp(18px, 2.4vw, 24px);
+    font-weight: 500;
+  }
+
+  .card.game .card-subtitle { color: var(--game-accent); }
+  .card.business .card-subtitle { color: var(--biz-accent); }
+  .card.sports .card-subtitle { color: var(--sports-accent); }
+
+  .card-list,
+  .card-clients {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+  }
+
+  .card-list li {
+    font-size: clamp(12px, 1.3vw, 13px);
+    line-height: 2.05;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .card-clients li {
+    font-size: clamp(11.5px, 1.25vw, 12.5px);
+    line-height: 1.9;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .card-divider {
+    height: 1px;
+    opacity: 0.2;
+    margin: clamp(18px, 2.4vw, 24px) 0 clamp(16px, 2vw, 20px);
+  }
+
+  .card.game .card-divider { background: var(--game-accent); }
+  .card.business .card-divider { background: var(--biz-accent); }
+  .card.sports .card-divider { background: var(--sports-accent); }
+
+  /* ─── Clients label ─── */
+  .card-clients-label {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .card.game .card-clients-label { color: var(--game-accent); }
+  .card.business .card-clients-label { color: var(--biz-accent); }
+  .card.sports .card-clients-label { color: var(--sports-accent); }
+
+  .card-clients {
+    margin-bottom: clamp(18px, 2.4vw, 24px);
+    flex: 1;
+  }
+
+  /* ─── Detail link (bottom of card) ─── */
+  .card-detail-link {
+    text-align: center;
+    font-size: clamp(12px, 1.3vw, 13px);
+    font-weight: 500;
+    padding-top: 16px;
+    border-top: 1px solid;
+    margin-top: auto;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+  }
+
+  .card-detail-link .arrow {
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-detail-link .arrow {
+    transform: translateX(4px);
+  }
+
+  .card.game .card-detail-link {
+    color: var(--game-accent);
+    border-top-color: rgba(93, 75, 168, 0.25);
+  }
+  .card.business .card-detail-link {
+    color: var(--biz-accent);
+    border-top-color: rgba(47, 77, 117, 0.25);
+  }
+  .card.sports .card-detail-link {
+    color: var(--sports-accent);
+    border-top-color: rgba(74, 124, 58, 0.25);
+  }
+
+  /* ─── Hover arrow on top-right ─── */
+  .card-cta {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .card.game .card-cta { color: var(--game-accent); }
+  .card.business .card-cta { color: var(--biz-accent); }
+  .card.sports .card-cta { color: var(--sports-accent); }
+
+  .card:not(.coming-soon):hover .card-cta {
+    opacity: 1;
+    transform: translateX(-4px);
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    padding: 28px clamp(20px, 4vw, 48px);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fade-in 1s ease 1s forwards;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.25s ease;
+  }
+
+  .footer-contact a:hover { color: var(--text); }
+
+  .footer-copyright {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--text-faint);
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fade-in { to { opacity: 1; } }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Cross-device grid overflow fix ─── */
+  .card { min-width: 0; }
+
+  /* ─── Tablet (721~960px) ─── */
+  @media (max-width: 960px) and (min-width: 721px) {
+    main { padding: 60px 20px 40px; }
+    .cards { gap: 10px; }
+    .card { padding: 22px 16px 20px; }
+    .card-list li { font-size: 12px; line-height: 1.9; }
+    .card-clients li { font-size: 11.5px; }
+  }
+
+  /* ─── Mobile (≤720px) ─── */
+  @media (max-width: 720px) {
+    main { padding: 60px 20px 40px; }
+    .person-name { margin-bottom: 28px; }
+    .cards { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 28px 22px 24px; }
+    .back-link { top: 16px; left: 16px; padding: 6px 10px; font-size: 11px; }
+    .section-heading { margin-bottom: 28px; }
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← トップへ</a>
+
+<main>
+
+  <!-- ─── Section heading ─── -->
+  <div class="section-heading">
+    <h2>韓国の現場で、貴社の仕事を支えます</h2>
+    <p>韓国と日本、両国の言葉・文化・実務に通じた単一窓口</p>
+  </div>
+
+  <!-- ─── 3 Cards ─── -->
+  <div class="cards">
+
+    <!-- Card 1: Game & IP -->
+    <a href="ja/game.html" class="card game">
+      <span class="card-cta">→</span>
+      <div class="card-icon">🎮</div>
+      <h3 class="card-title">Game &amp; IP</h3>
+      <div class="card-subtitle">韓国ゲーム市場・IP活用支援</div>
+
+      <ul class="card-list">
+        <li>韓国ゲーム市場への参入支援</li>
+        <li>日本IP×韓国ゲーム化コンサル</li>
+        <li>ゲーム企画・アートディレクション</li>
+        <li>現地化戦略・KPI設計</li>
+        <li>IPホルダー交渉・リスク診断</li>
+      </ul>
+
+      <div class="card-divider"></div>
+
+      <div class="card-clients-label">主なお客様</div>
+      <ul class="card-clients">
+        <li>韓国市場参入を検討する日本企業</li>
+        <li>ゲーム・コンテンツ会社</li>
+        <li>IP保有スタジオ・出版社</li>
+      </ul>
+
+      <div class="card-detail-link">
+        詳細ページへ<span class="arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Card 2: Sports -->
+    <a href="ja/sports.html" class="card sports">
+      <span class="card-cta">→</span>
+      <div class="card-icon">🎾</div>
+      <h3 class="card-title">Sports</h3>
+      <div class="card-subtitle">日韓テニス・スポーツ交流</div>
+
+      <ul class="card-list">
+        <li>韓国スポーツ市場への進出アドバイス</li>
+        <li>SNSコンテンツ企画・制作などBranding構築サポート</li>
+        <li>日本人選手・コーチの韓国招聘</li>
+        <li>韓国テニスクラブ・アカデミー交流</li>
+        <li>日韓テニスイベント企画・通訳</li>
+        <li>ITF Play &amp; Stay コーチ資格保有</li>
+      </ul>
+
+      <div class="card-divider"></div>
+
+      <div class="card-clients-label">主なお客様</div>
+      <ul class="card-clients">
+        <li>スポーツクラブ・選手・コーチ・トレーナー</li>
+        <li>アカデミーなどスポーツ関係者</li>
+        <li>スポーツブランド・イベント</li>
+      </ul>
+
+      <div class="card-detail-link">
+        詳細ページへ<span class="arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Card 3: Business Support -->
+    <a href="ja/business.html" class="card business">
+      <span class="card-cta">→</span>
+      <div class="card-icon">🌏</div>
+      <h3 class="card-title">Business Support</h3>
+      <div class="card-subtitle">韓国進出・ビジネス支援</div>
+
+      <ul class="card-list">
+        <li>日韓ビジネス通訳・翻訳</li>
+        <li>韓国市場リサーチ・進出支援</li>
+        <li>韓国企業・公的機関との橋渡し</li>
+        <li>法律書籍翻訳の実績</li>
+        <li>領事館相談員・文化院での経験</li>
+      </ul>
+
+      <div class="card-divider"></div>
+
+      <div class="card-clients-label">主なお客様</div>
+      <ul class="card-clients">
+        <li>韓国進出を検討する日本企業</li>
+        <li>公的機関・自治体</li>
+        <li>士業・専門書出版社</li>
+      </ul>
+
+      <div class="card-detail-link">
+        詳細ページへ<span class="arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-contact">
+      <a href="mailto:bella.pistis@gmail.com">bella.pistis@gmail.com</a>
+      <a href="https://www.linkedin.com/in/bokmison" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/bokumi.tennis" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-copyright">© 2026 孫福美 · 손복미</div>
+  </div>
+</footer>
+
+</body>
+</html>

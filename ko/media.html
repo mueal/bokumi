@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media &amp; Coord — 손복미 · 孫福美 · Bokumi Son</title>
+<meta name="description" content="한일 미디어 코디네이션. 로케이션 섭외, 통역, 동행 취재 지원. 손복미 (孫福美 · Bokumi Son).">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fcfcfc;
+    --bg-soft: #f5f5f5;
+    --bg-card: #ffffff;
+
+    --text: #1a1a1a;
+    --text-dim: #555555;
+    --text-faint: #999999;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.15);
+
+    /* 미디어 카테고리 — 테라코타 오렌지 (indexkr의 media 카드와 통일) */
+    --accent: #a84f2c;
+    --accent-soft: #fcf6f4;
+    --accent-border: #e6c5bb;
+    --accent-deep: #4a1f0f;
+
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 12px 32px rgba(168, 79, 44, 0.08);
+
+    --font-ko: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ko);
+    font-weight: 500;
+    line-height: 1.75;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── Back link ─── */
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 100;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  /* ─── Layout ─── */
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: clamp(80px, 10vw, 120px) clamp(24px, 5vw, 56px) 80px;
+  }
+
+  /* ─── Page hero ─── */
+  .page-hero {
+    text-align: center;
+    margin-bottom: clamp(64px, 8vw, 96px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+
+  .breadcrumb {
+    font-size: clamp(12px, 1.2vw, 13px);
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--accent-deep);
+    margin-bottom: 24px;
+  }
+
+  .page-hero h1 em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .page-hero .lede {
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+
+  .page-hero .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ─── Section ─── */
+  section {
+    margin-bottom: clamp(96px, 12vw, 140px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  .section-num {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(40px, 5vw, 56px);
+    text-align: center;
+    color: var(--accent-deep);
+  }
+
+  .section-title em { font-style: normal; font-weight: 700; color: var(--accent); }
+
+  /* ─── Section 1: Background ─── */
+  .intro-text {
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.9;
+    color: var(--text-dim);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  .quote {
+    background: var(--accent-soft);
+    border: none;
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(32px, 4vw, 48px);
+    margin: clamp(48px, 6vw, 72px) auto 0;
+    max-width: 680px;
+    text-align: left;
+  }
+
+  .quote-text {
+    font-size: clamp(14px, 1.5vw, 17px);
+    line-height: 1.85;
+    color: var(--accent-deep);
+    font-weight: 400;
+  }
+
+  .quote-text strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ─── Scope Grid (3 cols) ─── */
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+  }
+
+  .scope-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(24px, 3vw, 32px);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+
+  .scope-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-border);
+  }
+
+  .scope-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .scope-title {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .scope-list {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    list-style: none;
+    font-weight: 400;
+  }
+
+  .scope-list li {
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .scope-list li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+    top: 5px;
+  }
+
+  /* ─── Services / Pricing Table ─── */
+  .service-table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.2fr) 2fr 0.8fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(28px, 3.5vw, 36px) clamp(28px, 3.5vw, 40px);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: background 0.3s ease;
+  }
+
+  .service-row:last-child { border-bottom: none; }
+  .service-row:hover { background: var(--bg-soft); }
+
+  .service-row.core {
+    background: var(--accent-soft);
+  }
+  .service-row.core:hover {
+    background: #f7e6e0;
+  }
+
+  .service-name {
+    font-weight: 600;
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--accent-deep);
+    line-height: 1.5;
+  }
+
+  .service-row.core .service-name { color: var(--accent); }
+
+  .core-tag {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    vertical-align: middle;
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  .service-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .service-type {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+    text-align: right;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ─── Why Grid (2 cols) ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+  }
+
+  .why-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(28px, 3.5vw, 36px);
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .why-item:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .why-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .why-title {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .why-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ─── Target list ─── */
+  .target-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .target-list li {
+    padding: clamp(24px, 3vw, 32px) 0 clamp(24px, 3vw, 32px) 40px;
+    border-bottom: 1px solid var(--border);
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.8;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .target-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: clamp(24px, 3vw, 32px);
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  .target-list strong { color: var(--accent-deep); font-weight: 700; }
+
+  /* ─── Process ─── */
+  .process-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: clamp(24px, 3vw, 40px);
+    padding: clamp(28px, 3.5vw, 40px) 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .process-step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 300;
+    color: var(--accent-border);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-size: clamp(17px, 1.9vw, 20px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-desc {
+    font-size: clamp(13.5px, 1.5vw, 14.5px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ─── Portfolio ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  .portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(28px, 3.5vw, 36px) clamp(24px, 3vw, 32px);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .portfolio-tag {
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .portfolio-title {
+    font-size: clamp(17px, 2vw, 20px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .portfolio-meta {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 400;
+    margin-bottom: auto;
+  }
+
+  /* ─── Inquiry ─── */
+  .inquiry-block {
+    text-align: center;
+    margin-top: clamp(80px, 10vw, 120px);
+    padding-top: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+
+  .inquiry-label {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+
+  .inquiry-email {
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .inquiry-email:hover {
+    color: var(--accent);
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    padding: 40px clamp(24px, 5vw, 56px);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    background: var(--bg-card);
+  }
+
+  .footer-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-right: 24px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .footer-contact a:hover { color: var(--accent); }
+
+  .footer-copyright {
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Cross-device grid overflow fix ─── */
+  .scope-item, .why-item, .portfolio-card,
+  .service-row, .service-type, .service-name, .service-price { min-width: 0; }
+
+  @media (max-width: 800px) {
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .why-grid, .scope-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ─── Tablet (721~900px): scope-grid 2컬럼으로 축소 ─── */
+  @media (max-width: 900px) and (min-width: 721px) {
+    .scope-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 720px) {
+    main { padding: 72px 20px 40px; }
+    .back-link { top: 20px; left: 16px; }
+    .scope-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .process-step { grid-template-columns: 48px 1fr; gap: 14px; padding: 20px 0; }
+    .step-num { font-size: 24px; }
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../indexkr.html" class="back-link">← 한국 고객 메인</a>
+
+<main>
+
+  <!-- ─── Page Hero ─── -->
+  <header class="page-hero">
+    <div class="breadcrumb">03 — Media &amp; Coord</div>
+
+    <h1><em>Korea–Japan</em><br>Media Coordination</h1>
+
+    <p class="lede">
+      한국 방송국·제작팀이 일본에서 촬영할 때,<br>
+      로케이션 섭외부터 당일 진행·통역까지 —<br>
+      현장 전체를 지원하는 일본측 코디네이터입니다.
+    </p>
+
+    <div class="badges">
+      <span class="badge">도쿄 거점 · 전국 대응</span>
+      <span class="badge">일본 영주권</span>
+      <span class="badge">통역 (일↔한)</span>
+    </div>
+  </header>
+
+  <!-- ─── Section 01: Background ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>이럴 때</em> 필요합니다</h2>
+
+    <p class="intro-text">
+      "일본에서 촬영하고 싶은데, 현지 언어도 법도 관행도 모르겠다"<br>
+      "사전 답사와 당일 진행을 따로 사람 쓰면 비효율적이다"<br>
+      "통역뿐 아니라 촬영 현장의 흐름을 아는 사람에게 맡기고 싶다"<br><br>
+      그런 순간, 일본측 단일 창구로 움직입니다.<br>
+      기획 단계 청취부터 현장에서의 즉시 판단까지 대응합니다.
+    </p>
+
+    <div class="quote">
+      <p class="quote-text">
+        통역은 "말을 옮기는" 것만으로는 부족합니다.<br>
+        <strong>현장의 흐름을 읽고, 다음 수를 미리 준비하는 것</strong> —<br>
+        그것이 한일 로케이션 코디네이션입니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Section 02: Scope ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>대응</em> 업무 범위</h2>
+
+    <div class="scope-grid">
+
+      <div class="scope-item">
+        <div class="scope-icon">📍</div>
+        <div class="scope-title">사전 준비</div>
+        <ul class="scope-list">
+          <li>로케이션 리서치 · 후보 제안</li>
+          <li>로케이션 헌팅 동행</li>
+          <li>촬영 허가 · 신청 절차</li>
+          <li>비용 협상 · 계약 지원</li>
+          <li>출연자 · 게스트 섭외</li>
+        </ul>
+      </div>
+
+      <div class="scope-item">
+        <div class="scope-icon">🎬</div>
+        <div class="scope-title">촬영 당일</div>
+        <ul class="scope-list">
+          <li>동행 통역 (일↔한)</li>
+          <li>스케줄 진행 관리</li>
+          <li>현지 스태프와의 조율</li>
+          <li>갑작스러운 변경 즉시 대응</li>
+          <li>길거리 인터뷰 지원</li>
+        </ul>
+      </div>
+
+      <div class="scope-item">
+        <div class="scope-icon">📝</div>
+        <div class="scope-title">촬영 후</div>
+        <ul class="scope-list">
+          <li>인터뷰 소재 번역</li>
+          <li>자막 · 텔롭 감수</li>
+          <li>팩트 체크 · 추가 리서치</li>
+          <li>일본측 결제 절차 대행</li>
+          <li>추후 추가 촬영 대응</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 03: Pricing ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>요금</em> 형태</h2>
+
+    <div class="service-table-wrap">
+
+      <div class="service-row core">
+        <div class="service-name">
+          풀 코디네이션
+          <span class="core-tag">★ CORE</span>
+        </div>
+        <div class="service-desc">
+          · 사전 답사<br>
+          · 촬영 당일 동행 지원<br>
+          · 후속 대응까지 일괄 대응
+        </div>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">사전 로케이션 헌팅</div>
+        <div class="service-desc">
+          · 후보지 답사<br>
+          · 촬영 허가 사전 협의<br>
+          · 동선 설계 리포트 제출
+        </div>
+        <div class="service-type">Day Rate</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">당일 동행만</div>
+        <div class="service-desc">
+          · 짧은 일정 촬영<br>
+          · 인터뷰 동행<br>
+          · 통역만 의뢰
+        </div>
+        <div class="service-type">Hourly / Daily</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">월정액 자문</div>
+        <div class="service-desc">
+          · 일본 콘텐츠 동향 정기 리포트<br>
+          · 월 미팅 2회<br>
+          · 긴급 시 현지 대응
+        </div>
+        <div class="service-type">Retainer</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 04: Why ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title">4가지 <em>강점</em></h2>
+
+    <div class="why-grid">
+
+      <div class="why-item">
+        <div class="why-icon">🎬</div>
+        <div class="why-title">제작 현장의 감각</div>
+        <div class="why-desc">
+          게임 업계에서 쌓은 기획·운영 경험으로, 촬영 현장의 흐름과 제작팀의 언어를 이해합니다.
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">🗣</div>
+        <div class="why-title">통역의 정확도</div>
+        <div class="why-desc">
+          영사관 상담원 경험, 법률서적 번역 실적 — 공적·전문 영역에서 다져진 통역 경험이 기반입니다.
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">🇯🇵</div>
+        <div class="why-title">일본 영주권자</div>
+        <div class="why-desc">
+          15년 현지 경험. 관공서·점포·지역 커뮤니티와의 협상에 익숙하며, 현지 관행에 통달합니다.
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">즉시 판단력</div>
+        <div class="why-desc">
+          갑작스러운 사양 변경 · 날씨 변화 · 출연자 트러블 — 현장에서 필요한 "즉석 판단"이 강점입니다.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 05: Target ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>주요</em> 타깃</h2>
+
+    <ul class="target-list">
+      <li><strong>한국 지상파·케이블 방송국</strong> —<br>예능·다큐멘터리 일본 로케</li>
+      <li><strong>제작사·외주 프로듀서</strong> —<br>단기 일정 현지 지원</li>
+      <li><strong>YouTube · OTT 콘텐츠팀</strong> —<br>일본 현지 기획 촬영 · 인터뷰 수록</li>
+      <li><strong>광고·CF 제작팀</strong> —<br>짧은 시간 안에 로케이션 확보 및 현장 운영</li>
+    </ul>
+  </section>
+
+  <!-- ─── Section 06: Process ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>의뢰</em>부터 촬영까지의 흐름</h2>
+
+    <div class="process-list">
+
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">기획 청취</div>
+          <div class="step-desc">
+            방송 기획 · 촬영 일정 · 희망 로케이션 이미지 · 예산 규모를<br>
+            온라인 미팅에서 공유합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">후보지 리스트 제안</div>
+          <div class="step-desc">
+            기획 의도에 맞는 로케이션 후보를<br>
+            사진·참고 자료와 함께 복수 제안합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">허가 · 협상</div>
+          <div class="step-desc">
+            촬영 허가 취득, 시설·점포와의 비용 협상,<br>
+            필요 서류 작성을 진행합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">최종 확인 · 답사</div>
+          <div class="step-desc">
+            필요 시 사전 답사 동행 ·<br>
+            타임 스케줄과 촬영 동선을 확정합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">촬영 당일</div>
+          <div class="step-desc">
+            스태프 집합부터 철수까지 전일 동행 ·<br>
+            통역 · 진행 관리 · 돌발 상황 즉시 대응.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-title">촬영 후 팔로업</div>
+          <div class="step-desc">
+            일본측 결제 처리 · 추가 번역 · 자막 감수 ·<br>
+            후일 추가 촬영 필요 시 재대응.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 07: Portfolio ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>관련</em> 실적</h2>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card">
+        <div class="portfolio-tag">tvN · Variety</div>
+        <div class="portfolio-title">한국 방송국 tvN 예능</div>
+        <div class="portfolio-meta">일본 체험 관련 코디네이터</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Inquiry ─── -->
+  <div class="inquiry-block">
+    <div class="inquiry-label">문의</div>
+    <a href="mailto:bella.pistis@gmail.com" class="inquiry-email">bella.pistis@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-contact">
+      <a href="mailto:bella.pistis@gmail.com">bella.pistis@gmail.com</a>
+      <a href="https://www.linkedin.com/in/bokmison" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../indexkr.html">한국 고객 메인</a>
+      <a href="../top_index.html">처음으로</a>
+    </div>
+    <div class="footer-copyright">© 2026 손복미 · 孫福美</div>
+  </div>
+</footer>
+
+</body>
+</html>

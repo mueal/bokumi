@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; IP — 손복미 · 孫福美 · Bokumi Son</title>
+<meta name="description" content="일본 IP 게임화 컨설팅 — 15년의 일본 게임 업계 경험. 손복미 (孫福美 · Bokumi Son).">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fcfcfc;
+    --bg-soft: #f5f5f5;
+    --bg-card: #ffffff;
+
+    --text: #1a1a1a;
+    --text-dim: #555555;
+    --text-faint: #999999;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.15);
+
+    /* 게임 카테고리 — 딥 퍼플 네이비 (indexkr의 game 카드와 통일) */
+    --accent: #3a2f6e;
+    --accent-soft: #f2f0f7;
+    --accent-border: #d1cddf;
+    --accent-deep: #1f193b;
+
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 12px 32px rgba(58, 47, 110, 0.08);
+
+    --font-ko: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ko);
+    font-weight: 500;
+    line-height: 1.75;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── Back link ─── */
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 100;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  /* ─── Layout ─── */
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: clamp(80px, 10vw, 120px) clamp(24px, 5vw, 56px) 80px;
+  }
+
+  /* ─── Page hero ─── */
+  .page-hero {
+    text-align: center;
+    margin-bottom: clamp(64px, 8vw, 96px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+
+  .breadcrumb {
+    font-size: clamp(12px, 1.2vw, 13px);
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--accent-deep);
+    margin-bottom: 24px;
+  }
+
+  .page-hero h1 em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .page-hero .lede {
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+
+  .page-hero .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ─── Section ─── */
+  section {
+    margin-bottom: clamp(96px, 12vw, 140px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  .section-num {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(40px, 5vw, 56px);
+    text-align: center;
+    color: var(--accent-deep);
+  }
+
+  .section-title em { font-style: normal; font-weight: 700; color: var(--accent); }
+
+  /* ─── Section 1: Background ─── */
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(24px, 3.5vw, 48px);
+    margin-bottom: clamp(56px, 7vw, 80px);
+  }
+
+  .career-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(36px, 4vw, 48px) clamp(28px, 3.5vw, 40px);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .career-block:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .career-years {
+    font-size: clamp(48px, 6.5vw, 64px);
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .career-field {
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: var(--accent-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .career-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+    margin: 0 auto 18px;
+  }
+
+  .career-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .career-list li {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    font-weight: 400;
+    line-height: 2.2;
+  }
+
+  /* Quote block */
+  .quote {
+    background: var(--accent-soft);
+    border: none;
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(32px, 4vw, 48px);
+    margin: clamp(48px, 6vw, 72px) auto 0;
+    max-width: 680px;
+    text-align: left;
+  }
+
+  .quote-text {
+    font-size: clamp(14px, 1.5vw, 17px);
+    line-height: 1.85;
+    color: var(--accent-deep);
+    font-weight: 400;
+  }
+
+  .quote-text strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ─── Section 2: Services table ─── */
+  .service-table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.2fr) 2fr 0.8fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(28px, 3.5vw, 36px) clamp(28px, 3.5vw, 40px);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: background 0.3s ease;
+  }
+
+  .service-row:last-child { border-bottom: none; }
+  .service-row:hover { background: var(--bg-soft); }
+
+  .service-row.core {
+    background: var(--accent-soft);
+  }
+  .service-row.core:hover {
+    background: #ebe7f5;
+  }
+
+  .service-name {
+    font-weight: 600;
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--accent-deep);
+    line-height: 1.5;
+  }
+
+  .service-row.core .service-name { color: var(--accent); }
+
+  .core-tag {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    vertical-align: middle;
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  .service-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .service-type {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+    text-align: right;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ─── Section 3: Why (4 cards) ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+  }
+
+  .why-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(28px, 3.5vw, 36px);
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .why-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .why-num {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  .why-title {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .why-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ─── Section 4: Target list ─── */
+  .target-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .target-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    padding: clamp(24px, 3vw, 32px) 0;
+    border-bottom: 1px solid var(--border);
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.8;
+    align-items: start;
+    color: var(--text-dim);
+  }
+
+  .target-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  .target-list strong { color: var(--accent-deep); font-weight: 700; }
+
+  /* ─── Section 5: Portfolio ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  .portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(28px, 3.5vw, 36px) clamp(24px, 3vw, 32px);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  a.portfolio-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+
+  a.portfolio-card:hover .portfolio-arrow .arrow {
+    transform: translateX(6px);
+  }
+
+  .portfolio-tag {
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .portfolio-title {
+    font-size: clamp(17px, 2vw, 20px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .portfolio-meta {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 400;
+    margin-bottom: auto;
+  }
+
+  .portfolio-arrow {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 24px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .portfolio-arrow .arrow {
+    display: inline-block;
+    margin-left: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  /* ─── Section 6: Process ─── */
+  .process-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: clamp(24px, 3vw, 40px);
+    padding: clamp(28px, 3.5vw, 40px) 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .process-step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 300;
+    color: var(--accent-border);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-size: clamp(17px, 1.9vw, 20px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-desc {
+    font-size: clamp(13.5px, 1.5vw, 14.5px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ─── Inquiry ─── */
+  .inquiry-block {
+    text-align: center;
+    margin-top: clamp(80px, 10vw, 120px);
+    padding-top: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+
+  .inquiry-label {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+
+  .inquiry-email {
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .inquiry-email:hover {
+    color: var(--accent);
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    padding: 40px clamp(24px, 5vw, 56px);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    background: var(--bg-card);
+  }
+
+  .footer-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-right: 24px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .footer-contact a:hover { color: var(--accent); }
+
+  .footer-copyright {
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Cross-device grid overflow fix ─── */
+  .career-block, .why-item, .portfolio-card,
+  .service-row, .service-type, .service-name, .service-price { min-width: 0; }
+
+  @media (max-width: 800px) {
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .why-grid, .career-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 720px) {
+    main { padding: 72px 20px 40px; }
+    .back-link { top: 20px; left: 16px; }
+    .career-grid { grid-template-columns: 1fr; }
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-step { grid-template-columns: 48px 1fr; gap: 14px; padding: 20px 0; }
+    .step-num { font-size: 24px; }
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../indexkr.html" class="back-link">← 한국 고객 메인</a>
+
+<main>
+
+  <!-- ─── Page Hero ─── -->
+  <header class="page-hero">
+    <div class="breadcrumb">01 — Game &amp; IP</div>
+
+    <h1>일본 IP <em>게임화</em><br>컨설팅</h1>
+
+    <p class="lede">
+      일본 게임·콘텐츠 업계 15년.<br>
+      한국 기업의 일본 진출을 기획부터 운영까지 일관되게 지원합니다.
+    </p>
+
+    <div class="badges">
+      <span class="badge">일본 영주권</span>
+      <span class="badge">Tokyo, Japan</span>
+      <span class="badge">개인사업자 등록</span>
+    </div>
+  </header>
+
+  <!-- ─── Section 01: Background ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>경력</em>과 배경</h2>
+
+    <div class="career-grid">
+      <div class="career-block">
+        <div class="career-years">10Y</div>
+        <div class="career-field">Game Industry</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+          <li>게임 기획·아트디렉션</li>
+          <li>프로젝트 매니지먼트</li>
+          <li>일본 IP 게임화 프로젝트</li>
+          <li>라이브 서비스 운영·KPI 관리</li>
+          <li>한·일 콘텐츠 협업</li>
+        </ul>
+      </div>
+
+      <div class="career-block">
+        <div class="career-years">5Y</div>
+        <div class="career-field">IT Solution &amp; Consulting</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+          <li>솔루션 기획·개발</li>
+          <li>데이터 분석·전략 수립</li>
+          <li>B2B 컨설팅 실무</li>
+          <li>일본 기업 문화 내부 경험</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p class="quote-text">
+        일본 팬덤이 어떻게 반응하는지, <strong>데이터가 아니라 현장에서</strong> 봐왔습니다.<br>
+        IP 홀더와의 기대치 차이, 팬덤의 민감한 반응, 한·일 프로젝트의 실제 리스크 —<br>
+        이것을 아는 컨설턴트가 <strong>처음부터 리스크를 막아드립니다.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Section 02: Services ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>제공</em> 서비스</h2>
+
+    <div class="service-table-wrap">
+
+      <div class="service-row core">
+        <div class="service-name">
+          일본 IP 게임화 컨설팅
+          <span class="core-tag">★ CORE</span>
+        </div>
+        <div class="service-desc">
+          IP 홀더 협상 구조 설계 / 게임화 기획 / 아트디렉션 감수 /<br>
+          일본 팬덤 반응 예측 / 리스크 진단
+        </div>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">일본 진출 전략</div>
+        <div class="service-desc">
+          시장 적합성 분석 / 경쟁사 포지셔닝 /<br>
+          데이터 기반 현지화 전략 / 출시 타이밍 / KPI 설계
+        </div>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">현지화 실행 지원</div>
+        <div class="service-desc">
+          UI/UX 일본 재설계 / ASO (앱스토어 최적화) /<br>
+          일본어 감수 / 결제·규정 대응
+        </div>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">월정액 자문</div>
+        <div class="service-desc">
+          일본 시장 동향 리포트 / 월 미팅 2회 /<br>
+          일본측 커뮤니케이션 대리 / 긴급 자문
+        </div>
+        <div class="service-type">Retainer</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 03: Why ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title">4가지 <em>강점</em></h2>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-title">게임 내부자</div>
+        <div class="why-desc">
+          기획·아트·PM 직접 수행.<br>
+          현장의 언어로 소통합니다.
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-title">현지 영주권자</div>
+        <div class="why-desc">
+          일본 IT·게임 업계 15년.<br>
+          현지 네트워크와 문화 감각 보유.
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-title">풀 사이클 경험</div>
+        <div class="why-desc">
+          기획→런칭→운영까지 직접 경험.<br>
+          일본 IP 게임 운영 노하우 보유.
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-title">한·일 브릿지</div>
+        <div class="why-desc">
+          양국 언어·문화·비즈니스 관행을<br>
+          모두 이해하는 단일 창구.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 04: Target ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>주요</em> 클라이언트</h2>
+
+    <ul class="target-list">
+      <li>
+        <div>
+          일본 IP(만화·애니·캐릭터)를 게임으로 만들고자 하는<br>
+          <strong>한국 게임 개발사</strong>
+        </div>
+      </li>
+      <li>
+        <div>
+          일본 모바일 시장 진출을 준비 중인<br>
+          <strong>한국 중소 게임사</strong>
+        </div>
+      </li>
+      <li>
+        <div>
+          일본 진출 전략을 세우되 현지 실행 파트너가 필요한<br>
+          <strong>IT·콘텐츠 스타트업</strong>
+        </div>
+      </li>
+      <li>
+        <div>
+          일본 현지 감수·피드백이 필요한<br>
+          <strong>게임 퍼블리셔·투자사</strong>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ─── Section 05: Portfolio ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>주요</em> 실적</h2>
+
+    <div class="portfolio-grid">
+
+      <a href="https://apps.apple.com/jp/app/%E4%BA%94%E7%AD%89%E5%88%86%E3%81%AE%E8%8A%B1%E5%AB%81-%E4%BA%94%E3%81%A4%E5%AD%90%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E3%83%91%E3%82%BA%E3%83%AB%E3%82%92%E4%BA%94%E7%AD%89%E5%88%86%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/id1525515096" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile · PM &amp; AD</div>
+        <div class="portfolio-title">오등분의 신부</div>
+        <div class="portfolio-meta">일본 IP 게임화·PM·아트디렉션</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://play.google.com/store/apps/details?id=jp.enish.edjm&pcampaignid=web_share" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile · PM</div>
+        <div class="portfolio-title">돌격! 남자훈련소</div>
+        <div class="portfolio-meta">일본 IP 게임화·운영 총괄</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.bokumono.com/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">목장이야기</div>
+        <div class="portfolio-meta">모바일 전개·PM</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://skygalleon.jp/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">Sky Galleon</div>
+        <div class="portfolio-meta">모바일 게임 운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://naimg.playthisgame.com/global/microsite/holiaexedium/EN/main.html" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CABAL Online</div>
+        <div class="portfolio-meta">일본 전개·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.dekaron.co.kr/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">Dekaron</div>
+        <div class="portfolio-meta">일본 전개·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://crossfire.z8games.com/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CrossFire</div>
+        <div class="portfolio-meta">일본 전개·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.toei-anim.co.jp/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Consulting</div>
+        <div class="portfolio-title">토에이애니메이션</div>
+        <div class="portfolio-meta">한국 담당 컨설턴트</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 06: Process ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>협업</em> 프로세스</h2>
+
+    <div class="process-list">
+
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">무료 상담</div>
+          <div class="step-desc">
+            온라인 미팅.<br>
+            프로젝트 현황 파악 및 방향 논의.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">검토 리포트</div>
+          <div class="step-desc">
+            일본 시장 적합성·리스크<br>
+            초기 리포트 제공.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">제안·계약</div>
+          <div class="step-desc">
+            서비스 범위·일정·비용<br>
+            협의 후 계약.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">실행·납품</div>
+          <div class="step-desc">
+            전략 수립 또는 실행 지원.<br>
+            정기 보고.
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">런칭 후 자문</div>
+          <div class="step-desc">
+            런칭 후 모니터링 및<br>
+            개선 자문 옵션.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Inquiry ─── -->
+  <div class="inquiry-block">
+    <div class="inquiry-label">문의</div>
+    <a href="mailto:bella.pistis@gmail.com" class="inquiry-email">bella.pistis@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-contact">
+      <a href="mailto:bella.pistis@gmail.com">bella.pistis@gmail.com</a>
+      <a href="https://www.linkedin.com/in/bokmison" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../indexkr.html">한국 고객 메인</a>
+      <a href="../index.html">처음으로</a>
+    </div>
+    <div class="footer-copyright">© 2026 손복미 · 孫福美</div>
+  </div>
+</footer>
+
+</body>
+</html>

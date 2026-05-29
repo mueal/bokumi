@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &amp; IP — 孫福美 · 손복미 · Bokumi Son</title>
+<meta name="description" content="韓国ゲーム市場・IP活用コンサルティング — 15年の日本ゲーム業界経験。孫福美 (Bokumi Son). Tokyo.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fcfcfc;
+    --bg-soft: #f5f5f5;
+    --bg-card: #ffffff;
+
+    --text: #1a1a1a;
+    --text-dim: #555555;
+    --text-faint: #999999;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.15);
+
+    /* Game カテゴリ — ディープパープルネイビー */
+    --accent: #3a2f6e;
+    --accent-soft: #f2f0f7;
+    --accent-border: #d1cddf;
+    --accent-deep: #1f193b;
+
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 12px 32px rgba(58, 47, 110, 0.08);
+
+    --font-ja: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+    --font-serif: 'Cormorant Garamond', serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ja);
+    font-weight: 500;
+    line-height: 1.75;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── Back link ─── */
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 100;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  /* ─── Layout ─── */
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: clamp(80px, 10vw, 120px) clamp(24px, 5vw, 56px) 80px;
+  }
+
+  /* ─── Page hero ─── */
+  .page-hero {
+    text-align: center;
+    margin-bottom: clamp(64px, 8vw, 96px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+
+  .breadcrumb {
+    font-size: clamp(12px, 1.2vw, 13px);
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--accent-deep);
+    margin-bottom: 24px;
+  }
+
+  .page-hero h1 em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .page-hero .lede {
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 640px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+
+  .page-hero .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ─── Section ─── */
+  section {
+    margin-bottom: clamp(96px, 12vw, 140px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  .section-num {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(40px, 5vw, 56px);
+    text-align: center;
+    color: var(--accent-deep);
+  }
+
+  .section-title em { font-style: normal; font-weight: 700; color: var(--accent); }
+
+  /* ─── Section 1: Background ─── */
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(24px, 3.5vw, 48px);
+    margin-bottom: clamp(56px, 7vw, 80px);
+  }
+
+  .career-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(36px, 4vw, 48px) clamp(28px, 3.5vw, 40px);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .career-block:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .career-years {
+    font-size: clamp(48px, 6.5vw, 64px);
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .career-field {
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: var(--accent-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .career-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+    margin: 0 auto 18px;
+  }
+
+  .career-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .career-list li {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    font-weight: 400;
+    line-height: 2.2;
+  }
+
+  /* Quote block */
+  .quote {
+    background: var(--accent-soft);
+    border: none;
+    border-radius: 8px;
+    padding: clamp(28px, 3.5vw, 40px) clamp(28px, 3.5vw, 48px);
+    margin: clamp(48px, 6vw, 72px) auto 0;
+    max-width: 900px;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .quote-line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(12px, 1.35vw, 15px);
+    line-height: 2.2;
+    color: var(--accent-deep);
+    font-weight: 400;
+  }
+
+  .quote-line strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ─── Section 2: Services table ─── */
+  .service-table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.2fr) 2fr 0.8fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(28px, 3.5vw, 36px) clamp(28px, 3.5vw, 40px);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: background 0.3s ease;
+  }
+
+  .service-row:last-child { border-bottom: none; }
+  .service-row:hover { background: var(--bg-soft); }
+
+  .service-row.core {
+    background: var(--accent-soft);
+  }
+  .service-row.core:hover {
+    background: #ebe7f5;
+  }
+
+  .service-name {
+    font-weight: 600;
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--accent-deep);
+    line-height: 1.5;
+  }
+
+  .service-row.core .service-name { color: var(--accent); }
+
+  .core-tag {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    vertical-align: middle;
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  .service-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .service-tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-tags li {
+    font-size: clamp(12.5px, 1.35vw, 14px);
+    color: var(--text-dim);
+    font-weight: 400;
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .service-tags li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .service-type {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+    text-align: right;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ─── Section 3: Why (4 cards) ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+  }
+
+  .why-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(28px, 3.5vw, 36px);
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .why-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .why-num {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  .why-title {
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .why-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ─── Section 4: Target list ─── */
+  .target-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .target-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    padding: clamp(24px, 3vw, 32px) 0;
+    border-bottom: 1px solid var(--border);
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.8;
+    align-items: start;
+    color: var(--text-dim);
+  }
+
+  .target-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  .target-list strong { color: var(--accent-deep); font-weight: 700; }
+
+  /* ─── Section 5: Portfolio ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  .portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(28px, 3.5vw, 36px) clamp(24px, 3vw, 32px);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  a.portfolio-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+
+  a.portfolio-card:hover .portfolio-arrow .arrow {
+    transform: translateX(6px);
+  }
+
+  .portfolio-tag {
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .portfolio-title {
+    font-size: clamp(17px, 2vw, 20px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .portfolio-meta {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 400;
+    margin-bottom: auto;
+  }
+
+  .portfolio-arrow {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 24px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .portfolio-arrow .arrow {
+    display: inline-block;
+    margin-left: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  /* ─── Section 6: Process ─── */
+  .process-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: clamp(24px, 3vw, 40px);
+    padding: clamp(28px, 3.5vw, 40px) 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .process-step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 300;
+    color: var(--accent-border);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-size: clamp(17px, 1.9vw, 20px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-desc {
+    font-size: clamp(13.5px, 1.5vw, 14.5px);
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  /* ─── Inquiry ─── */
+  .inquiry-block {
+    text-align: center;
+    margin-top: clamp(80px, 10vw, 120px);
+    padding-top: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+
+  .inquiry-label {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+
+  .inquiry-email {
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .inquiry-email:hover {
+    color: var(--accent);
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    padding: 40px clamp(24px, 5vw, 56px);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    background: var(--bg-card);
+  }
+
+  .footer-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-right: 24px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .footer-contact a:hover { color: var(--accent); }
+
+  .footer-copyright {
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Cross-device grid overflow fix ─── */
+  .career-block, .why-item, .portfolio-card,
+  .service-row, .service-type, .service-name, .service-price { min-width: 0; }
+
+  @media (max-width: 800px) {
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .why-grid, .career-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 720px) {
+    main { padding: 72px 20px 40px; }
+    .back-link { top: 20px; left: 16px; }
+    .career-grid { grid-template-columns: 1fr; }
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-step { grid-template-columns: 48px 1fr; gap: 14px; padding: 20px 0; }
+    .step-num { font-size: 24px; }
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../indexjp.html" class="back-link">← トップへ戻る</a>
+
+<main>
+
+  <!-- ─── Page Hero ─── -->
+  <header class="page-hero">
+    <div class="breadcrumb">01 — Game &amp; IP</div>
+
+    <h1>韓国ゲーム市場と<br><em>IP活用</em>コンサルティング</h1>
+
+    <p class="lede">
+      日本ゲーム・コンテンツ業界15年の経験。<br>
+      日本企業の韓国市場参入を、企画から運営まで一貫してサポートします。
+    </p>
+
+    <div class="badges">
+      <span class="badge">日本永住権</span>
+      <span class="badge">Tokyo, Japan</span>
+      <span class="badge">個人事業主登録</span>
+    </div>
+  </header>
+
+  <!-- ─── Section 01: Background ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>経歴</em>と背景</h2>
+
+    <div class="career-grid">
+      <div class="career-block">
+        <div class="career-years">10Y</div>
+        <div class="career-field">Game Industry</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+          <li>ゲーム企画・アートディレクション</li>
+          <li>プロジェクトマネジメント</li>
+          <li>日本IPゲーム化プロジェクト</li>
+          <li>ライブサービス運営・KPI管理</li>
+          <li>日韓コンテンツ協業</li>
+          <li>ファン向けのオフラインイベント企画及び運営</li>
+        </ul>
+      </div>
+
+      <div class="career-block">
+        <div class="career-years">5Y</div>
+        <div class="career-field">IT Solution &amp; Consulting</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+          <li>ソリューション企画・開発</li>
+          <li>データ分析・戦略立案</li>
+          <li>B2Bコンサルティング実務</li>
+          <li>日本企業文化の内部経験</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote">
+      <span class="quote-line">韓国のゲームファンがどう反応するか、<strong>データだけではなく現場で</strong>見てきました。</span>
+      <span class="quote-line">IPホルダーとの期待値のズレ、ファンの敏感な反応、日韓プロジェクトのリアルなリスク —</span>
+      <span class="quote-line">それを知るコンサルタントが、<strong>最初からリスクを防ぎます。</strong></span>
+    </div>
+  </section>
+
+  <!-- ─── Section 02: Services ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>提供</em>サービス</h2>
+
+    <div class="service-table-wrap">
+
+      <div class="service-row core">
+        <div class="service-name">
+          日本IP × 韓国ゲーム化<br>コンサルティング
+          <span class="core-tag">★ CORE</span>
+        </div>
+        <ul class="service-tags">
+          <li>IPホルダー交渉構造の設計</li>
+          <li>ゲーム化企画</li>
+          <li>アートディレクション監修</li>
+          <li>韓国ファン反応予測</li>
+          <li>リスク診断</li>
+        </ul>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">韓国市場参入戦略</div>
+        <ul class="service-tags">
+          <li>市場適合性分析</li>
+          <li>競合ポジショニング</li>
+          <li>データ基盤の現地化戦略</li>
+          <li>リリースタイミング</li>
+          <li>KPI設計</li>
+        </ul>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">現地化実行支援</div>
+        <ul class="service-tags">
+          <li>UI/UX韓国版リデザイン</li>
+          <li>ASO（アプリストア最適化）</li>
+          <li>韓国語監修</li>
+          <li>決済・規制対応</li>
+        </ul>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">月額アドバイザリー</div>
+        <ul class="service-tags">
+          <li>韓国市場動向レポート</li>
+          <li>月2回ミーティング</li>
+          <li>韓国側コミュニケーション代行</li>
+          <li>緊急相談対応</li>
+        </ul>
+        <div class="service-type">Retainer</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 03: Why ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title">4つの<em>強み</em></h2>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-title">ゲーム業界の内部者</div>
+        <div class="why-desc">
+          企画・アート・PM を直接担当。<br>
+          現場の言葉で対話できます。
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-title">韓国IT及びコンテンツ企業とのネットワーク15年</div>
+        <div class="why-desc">
+          韓国IT・ゲーム業界15年のキャリア。<br>
+          現地ネットワークと文化感覚を保有。
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-title">フルサイクルの経験</div>
+        <div class="why-desc">
+          企画→ローンチ→運営まで直接経験。<br>
+          日本IPゲーム運営のノウハウを保有。
+        </div>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-title">日韓ブリッジ</div>
+        <div class="why-desc">
+          両国の言語・文化・ビジネス慣行を<br>
+          熟知した唯一の窓口。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 04: Target ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>主な</em>お客様</h2>
+
+    <ul class="target-list">
+      <li>
+        <div>
+          韓国ゲーム市場への参入・IPライセンス活用を検討する<br>
+          <strong>日本のゲーム・コンテンツ会社</strong>
+        </div>
+      </li>
+      <li>
+        <div>
+          自社IPを韓国で展開したい<br>
+          <strong>IP保有スタジオ・出版社・アニメ制作会社</strong>
+        </div>
+      </li>
+      <li>
+        <div>
+          韓国の強みであるグローバル展開のためのパートナーが必要な<br>
+          <strong>IT・コンテンツ・スタートアップ企業</strong>
+        </div>
+      </li>
+      <li>
+        <div>
+          韓国現地のフィードバック・監修が必要な<br>
+          <strong>ゲームパブリッシャー・投資会社</strong>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ─── Section 05: Portfolio ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>主な</em>実績</h2>
+
+    <div class="portfolio-grid">
+
+      <a href="https://apps.apple.com/jp/app/%E4%BA%94%E7%AD%89%E5%88%86%E3%81%AE%E8%8A%B1%E5%AB%81-%E4%BA%94%E3%81%A4%E5%AD%90%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E3%83%91%E3%82%BA%E3%83%AB%E3%82%92%E4%BA%94%E7%AD%89%E5%88%86%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/id1525515096" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile · PM &amp; AD</div>
+        <div class="portfolio-title">五等分の花嫁</div>
+        <div class="portfolio-meta">総括ディレクター・アートディレクター</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://play.google.com/store/apps/details?id=jp.enish.edjm&pcampaignid=web_share" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile · PM</div>
+        <div class="portfolio-title">魁!! 男塾</div>
+        <div class="portfolio-meta">日本IPゲーム化・PM・アートディレクション</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.bokumono.com/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">牧場物語</div>
+        <div class="portfolio-meta">総括ディレクター・アートディレクター</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://skygalleon.jp/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">Sky Galleon</div>
+        <div class="portfolio-meta">企画・開発・運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://naimg.playthisgame.com/global/microsite/holiaexedium/EN/main.html" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CABAL Online</div>
+        <div class="portfolio-meta">メインPM・日本ローカライズ・運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.dekaron.co.kr/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">Dekaron</div>
+        <div class="portfolio-meta">日本ローカライズ・運営総括</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://crossfire.z8games.com/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CrossFire</div>
+        <div class="portfolio-meta">日本ローカライズ・運営総括</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.toei-anim.co.jp/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">Consulting</div>
+        <div class="portfolio-title">東映アニメーション</div>
+        <div class="portfolio-meta">韓国担当コンサルタント</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 06: Process ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>ご依頼から</em>納品までの流れ</h2>
+
+    <div class="process-list">
+
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">無料相談</div>
+          <div class="step-desc">
+            オンラインミーティング。<br>
+            プロジェクトの現状確認と方向性のすり合わせ。
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">調査レポート</div>
+          <div class="step-desc">
+            韓国市場適合性・リスクの<br>
+            初期レポートをご提供。
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">提案・契約</div>
+          <div class="step-desc">
+            サービス範囲・スケジュール・費用を<br>
+            ご相談のうえ契約締結。
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">実行・納品</div>
+          <div class="step-desc">
+            戦略立案または実行支援。<br>
+            定期的な進捗報告。
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">ローンチ後サポート</div>
+          <div class="step-desc">
+            リリース後のモニタリングと<br>
+            改善アドバイザリーオプション。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Inquiry ─── -->
+  <div class="inquiry-block">
+    <div class="inquiry-label">お問い合わせ</div>
+    <a href="mailto:bella.pistis@gmail.com" class="inquiry-email">bella.pistis@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-contact">
+      <a href="mailto:bella.pistis@gmail.com">bella.pistis@gmail.com</a>
+      <a href="https://www.linkedin.com/in/bokmison" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../indexjp.html">日本のお客様トップ</a>
+      <a href="../index.html">サイトトップ</a>
+    </div>
+    <div class="footer-copyright">© 2026 孫福美 · 손복미</div>
+  </div>
+</footer>
+
+</body>
+</html>

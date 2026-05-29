@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>손복미 · 孫福美 · Bokumi Son</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&display=swap');
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Pretendard', "Noto Sans JP", -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 48px 20px;
+    box-sizing: border-box;
+    background: #fcfcfc;
+    color: #1a1a1a;
+  }
+  
+  .wrapper { 
+    text-align: center; 
+    padding: 0 20px;
+  }
+  
+  .title-area { 
+    margin-bottom: 64px; 
+  }
+  
+  h1 { 
+    font-weight: 300; 
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    margin: 0 0 12px 0; 
+    letter-spacing: 0.02em; 
+    white-space: nowrap;
+  }
+  
+  p.subtitle {
+    color: #888;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .grid { 
+    display: flex; 
+    gap: 32px; 
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eaeaea; 
+    border-radius: 20px;
+    padding: 48px 64px; 
+    text-decoration: none; 
+    color: #1a1a1a; 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    min-width: 280px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  }
+  
+  /* 한국 고객 (파스텔 블루) */
+  .btn-kr {
+    background: #eff6ff;
+    border-color: #dbeafe;
+  }
+  .btn-kr:hover { 
+    border-color: #bfdbfe; 
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(29, 78, 216, 0.08);
+  }
+  .btn-kr:hover span.enter-text {
+    color: #1e40af; 
+  }
+
+  /* 일본 고객 (파스텔 핑크) */
+  .btn-jp {
+    background: #fdf2f8;
+    border-color: #fce7f3;
+  }
+  .btn-jp:hover { 
+    border-color: #fbcfe8; 
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(190, 24, 93, 0.08);
+  }
+  .btn-jp:hover span.enter-text {
+    color: #9d174d; 
+  }
+  
+  .flag-wrapper {
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    transition: transform 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .flag-img {
+    width: 44px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: block;
+  }
+
+  .btn:hover .flag-wrapper {
+    transform: scale(1.1);
+  }
+
+  .btn span.lang-title { 
+    display: block; 
+    font-size: 1.5rem; 
+    font-weight: 600;
+    margin-bottom: 12px; 
+    letter-spacing: -0.02em;
+  }
+  
+  .btn span.enter-text {
+    font-size: 0.95rem;
+    color: #666;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  /* WORK 버튼 */
+  .btn-work {
+    background: #f5f5f5;
+    border-color: #e5e5e5;
+    width: 100%;
+    padding: 28px 48px;
+    min-width: unset;
+    margin-top: 24px;
+    box-sizing: border-box;
+  }
+  .btn-work:hover {
+    border-color: #d4d4d4;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  }
+  .btn-work .lang-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0;
+  }
+
+  .cards-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  @media (max-width: 640px) {
+    h1 { white-space: normal; font-size: 1.5rem; line-height: 1.4; }
+    .grid { flex-direction: column; gap: 20px; }
+    .btn { padding: 40px; min-width: 100%; width: 100%; box-sizing: border-box; }
+    .btn-work { margin-top: 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title-area">
+      <h1>손복미 · 孫福美 · Bokumi Son</h1>
+      <p class="subtitle">Business Portfolio</p>
+    </div>
+    
+    <div class="cards-container">
+      <div class="grid">
+        <!-- 한국 고객용 입구 (indexkr.html 로 연결) -->
+        <a href="indexkr.html" class="btn btn-kr">
+          <div class="flag-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg" alt="South Korea Flag" class="flag-img">
+          </div>
+          <span class="lang-title">한국 고객</span>
+          <span class="enter-text">고객사 입장 →</span>
+        </a>
+
+        <!-- 일본 고객용 입구 (indexjp.html 로 연결) -->
+        <a href="indexjp.html" class="btn btn-jp">
+          <div class="flag-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" alt="Japan Flag" class="flag-img">
+          </div>
+          <span class="lang-title">日本のクライアント</span>
+          <span class="enter-text">専用サイトへ →</span>
+        </a>
+      </div>
+
+      <!-- WORK 버튼 -->
+      <a href="work.html" class="btn btn-work">
+        <span class="lang-title">WORK</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

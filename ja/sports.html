@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports — 孫福美 · 손복미 · Bokumi Son</title>
+<meta name="description" content="日韓テニス・スポーツ交流 — 韓国市場進出・選手招聘・イベント企画。ITF Play &amp; Stay Coach。孫福美 (Bokumi Son).">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fcfcfc;
+    --bg-soft: #f5f5f5;
+    --bg-card: #ffffff;
+
+    --text: #1a1a1a;
+    --text-dim: #555555;
+    --text-faint: #999999;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.15);
+
+    /* スポーツ — フォレストグリーン (indexjpのsportsカードと統一) */
+    --accent: #2a5732;
+    --accent-soft: #f0f5f1;
+    --accent-border: #c6d9c9;
+    --accent-deep: #15331a;
+
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 12px 32px rgba(42, 87, 50, 0.08);
+
+    --font-ja: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ja);
+    font-weight: 500;
+    line-height: 1.75;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── Back link ─── */
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 100;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  /* ─── Layout ─── */
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: clamp(80px, 10vw, 120px) clamp(24px, 5vw, 56px) 80px;
+  }
+
+  /* ─── Page hero ─── */
+  .page-hero {
+    text-align: center;
+    margin-bottom: clamp(64px, 8vw, 96px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+
+  .breadcrumb {
+    font-size: clamp(12px, 1.2vw, 13px);
+    color: var(--accent);
+    margin-bottom: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(34px, 5.2vw, 52px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: var(--accent-deep);
+    margin-bottom: 24px;
+  }
+
+  .page-hero h1 em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .page-hero .lede {
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: var(--text-dim);
+    line-height: 1.9;
+    max-width: 660px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+  }
+
+  .page-hero .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ─── Section ─── */
+  section {
+    margin-bottom: clamp(96px, 12vw, 140px);
+    opacity: 0;
+    animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+  }
+
+  .section-num {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(26px, 3.8vw, 36px);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    margin-bottom: clamp(40px, 5vw, 56px);
+    text-align: center;
+    color: var(--accent-deep);
+  }
+
+  .section-title em { font-style: normal; font-weight: 700; color: var(--accent); }
+
+  /* ─── Section 1: Background ─── */
+  .intro-text {
+    font-size: clamp(15px, 1.6vw, 17px);
+    line-height: 1.95;
+    color: var(--text-dim);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  .quote {
+    background: var(--accent-soft);
+    border: none;
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(32px, 4vw, 48px);
+    margin: clamp(48px, 6vw, 72px) auto 0;
+    max-width: 680px;
+    text-align: left;
+  }
+
+  .quote-text {
+    font-size: clamp(14px, 1.5vw, 17px);
+    line-height: 1.9;
+    color: var(--accent-deep);
+    font-weight: 400;
+  }
+
+  .quote-text strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ─── Services Table ─── */
+  .service-table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.2fr) 2fr 0.8fr;
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(28px, 3.5vw, 36px) clamp(28px, 3.5vw, 40px);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    transition: background 0.3s ease;
+  }
+
+  .service-row:last-child { border-bottom: none; }
+  .service-row:hover { background: var(--bg-soft); }
+
+  .service-row.core {
+    background: var(--accent-soft);
+  }
+  .service-row.core:hover {
+    background: #e5eee7;
+  }
+
+  .service-name {
+    font-weight: 600;
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--accent-deep);
+    line-height: 1.5;
+  }
+
+  .service-row.core .service-name { color: var(--accent); }
+
+  .core-tag {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    vertical-align: middle;
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  .service-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.85;
+    font-weight: 400;
+  }
+
+  .service-type {
+    font-size: clamp(12px, 1.3vw, 13px);
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+    text-align: right;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ─── Program Grid (2 cols) ─── */
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+  }
+
+  .program-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(36px, 4vw, 44px) clamp(32px, 4vw, 40px);
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .program-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .program-tag {
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .program-title {
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+
+  .program-desc {
+    font-size: clamp(13.5px, 1.5vw, 14.5px);
+    color: var(--text-dim);
+    line-height: 1.85;
+    font-weight: 400;
+  }
+
+  .program-desc ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 14px;
+  }
+
+  .program-desc ul li {
+    padding-left: 18px;
+    position: relative;
+    line-height: 2;
+  }
+
+  .program-desc ul li::before {
+    content: '·';
+    position: absolute;
+    left: 6px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ─── Why Grid (2 cols) ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2.5vw, 32px);
+  }
+
+  .why-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(32px, 4vw, 40px) clamp(28px, 3.5vw, 36px);
+    transition: all 0.4s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .why-item:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .why-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .why-num {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  .why-title {
+    font-size: clamp(17px, 1.9vw, 21px);
+    font-weight: 700;
+    color: var(--accent-deep);
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+  }
+
+  .why-desc {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-dim);
+    line-height: 1.85;
+    font-weight: 400;
+  }
+
+  /* ─── Target list ─── */
+  .target-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .target-list li {
+    padding: clamp(24px, 3vw, 32px) 0 clamp(24px, 3vw, 32px) 40px;
+    border-bottom: 1px solid var(--border);
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.85;
+    color: var(--text-dim);
+    position: relative;
+  }
+
+  .target-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: clamp(24px, 3vw, 32px);
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  .target-list strong { color: var(--accent-deep); font-weight: 700; }
+
+  /* ─── Portfolio ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  .portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(28px, 3.5vw, 36px) clamp(24px, 3vw, 32px);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  a.portfolio-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+
+  a.portfolio-card:hover .portfolio-arrow .arrow {
+    transform: translateX(6px);
+  }
+
+  .portfolio-tag {
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .portfolio-title {
+    font-size: clamp(16px, 1.85vw, 19px);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .portfolio-meta {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-weight: 400;
+    margin-bottom: auto;
+  }
+
+  .portfolio-arrow {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 24px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .portfolio-arrow .arrow {
+    display: inline-block;
+    margin-left: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-note {
+    grid-column: 1 / -1;
+    font-size: 12.5px;
+    color: var(--text-faint);
+    text-align: center;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 400;
+    margin-top: 16px;
+    background: transparent;
+    line-height: 1.75;
+  }
+
+  /* ─── Inquiry ─── */
+  .inquiry-block {
+    text-align: center;
+    margin-top: clamp(80px, 10vw, 120px);
+    padding-top: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+
+  .inquiry-label {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+
+  .inquiry-email {
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .inquiry-email:hover {
+    color: var(--accent);
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    padding: 40px clamp(24px, 5vw, 56px);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    background: var(--bg-card);
+  }
+
+  .footer-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-contact a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-right: 24px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .footer-contact a:hover { color: var(--accent); }
+
+  .footer-copyright {
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Cross-device grid overflow fix ─── */
+  .why-item, .program-card, .portfolio-card,
+  .service-row, .service-type, .service-name, .service-price { min-width: 0; }
+
+  @media (max-width: 800px) {
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .why-grid, .program-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 720px) {
+    main { padding: 72px 20px 40px; }
+    .back-link { top: 20px; left: 16px; }
+    .service-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 18px;
+    }
+    .service-type { text-align: left; font-size: 12px; }
+    .program-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../indexjp.html" class="back-link">← トップへ戻る</a>
+
+<main>
+
+  <!-- ─── Page Hero ─── -->
+  <header class="page-hero">
+    <div class="breadcrumb">02 — Sports</div>
+
+    <h1><em>Sports</em><br>日韓スポーツ交流</h1>
+
+    <p class="lede">
+      韓国テニスへの進出、選手・コーチの招聘、日韓交流イベントの企画 —<br>
+      テニスを軸に、両国を繋ぐワンストップサポートをご提供します。
+    </p>
+
+    <div class="badges">
+      <span class="badge">ITF Play &amp; Stay Coach (2025)</span>
+      <span class="badge">PISTIS</span>
+      <span class="badge">@bokumi.tennis</span>
+    </div>
+  </header>
+
+  <!-- ─── Section 01: Background ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>活動の</em>背景と想い</h2>
+
+    <p class="intro-text">
+      テニスを「競技」だけで終わらせず、人と人を繋ぐ文化・ライフスタイルとして広げていく —<br>
+      それが私の活動の軸です。<br><br>
+      日本での15年の生活、コンテンツ業界での経験、そして韓国側のネットワーク。<br>
+      この三つを掛け合わせ、<strong>テニスから各種スポーツを通じて、</strong>選手・クラブ・ブランドが「両国で語られる」状態を作ることを目指しています。
+    </p>
+
+    <div class="quote">
+      <p class="quote-text">
+        テニスを通じて、人生が少しでも豊かになる瞬間を増やしたい。<br>
+        <strong>競技を超えた価値</strong>を、日韓の両側から届けます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Section 02: Services ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>提供</em>サービス</h2>
+
+    <div class="service-table-wrap">
+
+      <div class="service-row core">
+        <div class="service-name">
+          スポーツパーソナル<br>ブランディング
+          <span class="core-tag">★ CORE</span>
+        </div>
+        <div class="service-desc">
+          · 選手・クラブのイメージ戦略<br>
+          · ロゴ・グッズ・ビジュアル制作<br>
+          · SNS運用<br>
+          · 日韓向けコンテンツ展開
+        </div>
+        <div class="service-type">Project / Ongoing</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">韓国テニス市場進出支援</div>
+        <div class="service-desc">
+          · 韓国テニスクラブ・アカデミーとの連携<br>
+          · 韓国市場リサーチ<br>
+          · 現地イベント企画・コーディネート<br>
+          · 韓国メディアへの露出支援
+        </div>
+        <div class="service-type">Project</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">韓国コーチ・選手 招聘</div>
+        <div class="service-desc">
+          · 韓国トレーナー・コーチの日本招聘<br>
+          · ワンデイクラス・セミナー企画<br>
+          · 通訳・現場運営<br>
+          · 招聘後のフォローアップ
+        </div>
+        <div class="service-type">Event</div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name">マジックテニス<br>(ITF Play &amp; Stay)</div>
+        <div class="service-desc">
+          · 初心者・子ども向けの導入プログラム<br>
+          · ITF公式方式採用<br>
+          · 用具・コート・ボールスピード調整<br>
+          · ITF認定コーチが指導
+        </div>
+        <div class="service-type">Class / Event</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 03: Flagship Programs ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>主力</em>プログラム</h2>
+
+    <div class="program-grid">
+
+      <div class="program-card">
+        <div class="program-tag">🎾 Exchange</div>
+        <div class="program-title">韓国テニス体験プログラム</div>
+        <div class="program-desc">
+          韓国訪問 + 試合 + 文化交流を一度に！
+          <ul>
+            <li>韓国のテニスコートでの試合</li>
+            <li>日韓選手の親善マッチ</li>
+            <li>韓国の食文化・観光体験</li>
+            <li>韓国テニス関係者とのネットワーキング</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-tag">🎯 Magic Tennis</div>
+        <div class="program-title">マジックテニス</div>
+        <div class="program-desc">
+          初心者・子どもでもすぐ始められる。
+          <ul>
+            <li>ITF公式 Play &amp; Stay 採用</li>
+            <li>用具・コート・ボールスピード調整</li>
+            <li>ITF認定コーチが指導</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 04: Why ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title">4つの<em>強み</em></h2>
+
+    <div class="why-grid">
+
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div class="why-title">ITF認定コーチ</div>
+        <div class="why-desc">
+          ITF Play &amp; Stay Coach Certification (2025)を保有。国際公式メソッドに基づく指導が可能で、テニス指導の品質を担保します。
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div class="why-title">韓国テニスシーンのネットワーク</div>
+        <div class="why-desc">
+          韓国テニス協会との連携実績、韓国側の選手・コーチ・クラブとの直接的なつながりを持っています。一次情報と人脈で動けます。
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div class="why-title">ブランディング・デザイン力</div>
+        <div class="why-desc">
+          ロゴ・ウェア・ビジュアルデザインを自ら制作。コンテンツ業界での経験を活かし、企画から制作まで一貫対応できます。
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <div class="why-title">単一窓口の安心感</div>
+        <div class="why-desc">
+          通訳・コーディネーター・プランナーを別々に手配する必要がありません。企画から現場まで、一人の窓口でワンストップ対応します。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Section 05: Target ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>主な</em>お客様</h2>
+
+    <ul class="target-list">
+      <li><strong>日本のテニス協会・クラブ</strong> —<br>韓国との交流プログラム / 視察コーディネート / 親善試合の企画</li>
+      <li><strong>選手・コーチ・アカデミー</strong> —<br>パーソナルブランディング / 韓国市場進出 / SNS運用</li>
+      <li><strong>スポーツブランド</strong> —<br>マーケティング / イベント / 日韓キャンペーン</li>
+      <li><strong>イベント主催者</strong> —<br>日韓交流戦 / ワンデイクラス / 地域イベント企画</li>
+    </ul>
+  </section>
+
+  <!-- ─── Section 06: Portfolio ─── -->
+  <section>
+    <div class="section-num">—</div>
+    <h2 class="section-title"><em>これまでの</em>活動</h2>
+
+    <div class="portfolio-grid">
+
+      <a href="https://www.instagram.com/p/DLU-aK5pLRL/?igsh=OHRyaWc0dDQ5ZHJz" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·Event · 2024</div>
+        <div class="portfolio-title">日韓テニスガールズ</div>
+        <div class="portfolio-meta">イベント通訳 · ビジュアルイラスト制作</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.instagram.com/p/DR_srhPj9e6/?igsh=Yzl3NTk0eTdxM202" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·Coordination</div>
+        <div class="portfolio-title">韓国テニス協会<br>日本視察</div>
+        <div class="portfolio-meta">視察コーディネーター</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.instagram.com/reels/DXrdeE-D3v6/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·One-Day Class</div>
+        <div class="portfolio-title">日本専門トレーナー<br>韓国招聘</div>
+        <div class="portfolio-meta">ワンデイクラス企画・運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.instagram.com/p/DRWLxwaDyfE/?igsh=dmtoajY1aXg4Znp1" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·Brand · PR</div>
+        <div class="portfolio-title">テニスブランド PRINCE</div>
+        <div class="portfolio-meta">ブランドPR · SNSコンテンツ</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://nextlevel-move.web.app/bootcamp/" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·Bootcamp · 2026</div>
+        <div class="portfolio-title">テニス合宿イベント運営</div>
+        <div class="portfolio-meta">日本プロテニスプレイヤー、テニス専門トレーナー、テニス栄養士の各テニス専門家による2日で変わるテニス合宿</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.instagram.com/bokumi.tennis" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·Community</div>
+        <div class="portfolio-title">@bokumi.tennis</div>
+        <div class="portfolio-meta">テニス活動記録</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <a href="https://www.instagram.com/hi.enjoytennis?igsh=MTZ3amQ0aGJpZzg3cQ==" class="portfolio-card" target="_blank" rel="noopener">
+        <div class="portfolio-tag">TENNIS ·Community</div>
+        <div class="portfolio-title">@hi.enjoytennis</div>
+        <div class="portfolio-meta">テニス情報発信 · コミュニティ運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+      </a>
+
+      <div class="portfolio-note">
+        ※ 各カードのリンクは順次更新予定<br>
+        映像・記事へのリンクを順次掲載します
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── Inquiry ─── -->
+  <div class="inquiry-block">
+    <div class="inquiry-label">お問い合わせ</div>
+    <a href="mailto:bella.pistis@gmail.com" class="inquiry-email">bella.pistis@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-contact">
+      <a href="mailto:bella.pistis@gmail.com">bella.pistis@gmail.com</a>
+      <a href="https://www.instagram.com/bokumi.tennis" target="_blank" rel="noopener">Instagram</a>
+      <a href="../indexjp.html">日本のお客様トップ</a>
+      <a href="../top_index.html">トップへ</a>
+    </div>
+    <div class="footer-copyright">© 2026 孫福美 · 손복미</div>
+  </div>
+</footer>
+
+</body>
+</html>

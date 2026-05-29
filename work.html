@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORK — 손복미 · 孫福美 · Bokumi Son</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fcfcfc;
+    --bg-soft: #f5f5f5;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-dim: #555555;
+    --text-faint: #999999;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.15);
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+    --shadow-md: 0 12px 32px rgba(58, 47, 110, 0.08);
+    --accent: #3a2f6e;
+    --accent-soft: #f2f0f7;
+    --accent-border: #d1cddf;
+    --accent-deep: #1f193b;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.75;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body.lang-jp {
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+                 "Yu Gothic UI", "Yu Gothic", "YuGothic", "Meiryo", sans-serif;
+  }
+  body.lang-kr {
+    font-family: 'Pretendard', "Apple SD Gothic Neo", "Noto Sans KR",
+                 "Malgun Gothic", sans-serif;
+  }
+
+  /* ─── Lang toggle ─── */
+  .lang-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+    display: flex;
+    gap: 6px;
+  }
+
+  .lang-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-card);
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+  .lang-btn.active {
+    background: var(--text);
+    color: #ffffff;
+    border-color: var(--text);
+  }
+  .lang-btn:hover:not(.active) {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* ─── Back link ─── */
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 24px;
+    z-index: 100;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .back-link:hover { color: var(--text); }
+
+  /* ─── Layout ─── */
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: clamp(80px, 10vw, 120px) clamp(24px, 5vw, 56px) 80px;
+  }
+
+  /* ─── Page hero ─── */
+  .page-hero {
+    text-align: center;
+    margin-bottom: clamp(56px, 8vw, 88px);
+    opacity: 0;
+    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .page-hero h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text);
+  }
+  .page-hero .sub {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-faint);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Content blocks ─── */
+  .jp-content, .kr-content { display: none; }
+  .jp-content.active, .kr-content.active { display: block; }
+
+  /* ─── Sections ─── */
+  .work-section {
+    margin-bottom: clamp(56px, 8vw, 80px);
+    opacity: 0;
+    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .work-section:nth-child(1) { animation-delay: 0.2s; }
+  .work-section:nth-child(2) { animation-delay: 0.35s; }
+  .work-section:nth-child(3) { animation-delay: 0.5s; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .section-heading {
+    font-size: clamp(20px, 2.8vw, 26px);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-heading em {
+    font-style: normal;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ─── Loading state ─── */
+  .loading {
+    color: var(--text-faint);
+    font-size: 14px;
+    padding: 24px 0;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── Career grid (from ja/game.html, ko/game.html) ─── */
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(24px, 3.5vw, 48px);
+    margin-bottom: clamp(56px, 7vw, 80px);
+  }
+  .career-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: clamp(36px, 4vw, 48px) clamp(28px, 3.5vw, 40px);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .career-block:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .career-years {
+    font-size: clamp(48px, 6.5vw, 64px);
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .career-field {
+    font-size: clamp(13px, 1.4vw, 15px);
+    color: var(--accent-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .career-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+    margin: 0 auto 18px;
+  }
+  .career-list {
+    list-style: none;
+    padding: 0;
+  }
+  .career-list li {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: var(--text-dim);
+    font-weight: 400;
+    line-height: 2.2;
+  }
+
+  /* ─── Portfolio grid (from ja/game.html, ja/sports.html, ko/*) ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 22px 20px;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+    min-width: 0;
+  }
+  a.portfolio-card:hover {
+    border-color: rgba(0,0,0,0.2);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+  .portfolio-tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 600;
+  }
+  .portfolio-title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .portfolio-meta {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .portfolio-arrow {
+    margin-top: auto;
+    font-size: 12px;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-top: 8px;
+  }
+  .portfolio-arrow .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  a.portfolio-card:hover .portfolio-arrow .arrow {
+    transform: translateX(6px);
+  }
+  .portfolio-note {
+    background: var(--bg-soft);
+    border: 1px dashed var(--border-strong);
+    border-radius: 14px;
+    padding: 24px 22px;
+    font-size: 13px;
+    color: var(--text-faint);
+    line-height: 1.8;
+  }
+
+  /* ─── Section accent borders ─── */
+  #jp-game .portfolio-card, #kr-game .portfolio-card {
+    border-color: rgba(124, 58, 237, 0.45);
+  }
+  #jp-game a.portfolio-card:hover, #kr-game a.portfolio-card:hover {
+    border-color: rgba(124, 58, 237, 0.9);
+  }
+  #jp-sports .portfolio-card, #kr-sports .portfolio-card {
+    border-color: rgba(22, 163, 74, 0.45);
+  }
+  #jp-sports a.portfolio-card:hover, #kr-sports a.portfolio-card:hover {
+    border-color: rgba(22, 163, 74, 0.9);
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 720px) {
+    main { padding: 72px 20px 40px; }
+    .back-link { top: 20px; left: 16px; }
+    .lang-toggle { top: 18px; right: 16px; }
+    .lang-btn { padding: 5px 12px; font-size: 12px; }
+    .career-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="lang-jp">
+
+<a href="index.html" class="back-link">← Back</a>
+
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('jp', this)">JP</button>
+  <button class="lang-btn"        onclick="setLang('kr', this)">KR</button>
+</div>
+
+<main>
+
+  <header class="page-hero">
+    <h1>WORK</h1>
+    <p class="sub">손복미 · 孫福美 · Bokumi Son</p>
+  </header>
+
+  <!-- ══════════════ JP ══════════════ -->
+  <div class="jp-content active" id="jp">
+
+    <div class="work-section">
+      <div class="section-eyebrow">略歴</div>
+      <h2 class="section-heading">経歴と<em>バックグラウンド</em></h2>
+      <div id="jp-career">
+        <div class="career-grid">
+        <div class="career-block">
+        <div class="career-years">10Y</div>
+        <div class="career-field">Game Industry</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+        <li>ゲーム企画・アートディレクション</li>
+        <li>プロジェクトマネジメント</li>
+        <li>日本IPゲーム化プロジェクト</li>
+        <li>ライブサービス運営・KPI管理</li>
+        <li>日韓コンテンツ協業</li>
+        <li>ファン向けのオフラインイベント企画及び運営</li>
+        </ul>
+        </div>
+        <div class="career-block">
+        <div class="career-years">5Y</div>
+        <div class="career-field">IT Solution &amp; Consulting</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+        <li>ソリューション企画・開発</li>
+        <li>データ分析・戦略立案</li>
+        <li>B2Bコンサルティング実務</li>
+        <li>日本企業文化の内部経験</li>
+        </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-section">
+      <div class="section-eyebrow">ゲーム</div>
+      <h2 class="section-heading">主な<em>実績</em></h2>
+      <div id="jp-game">
+        <div class="portfolio-grid">
+        <a class="portfolio-card" href="https://apps.apple.com/jp/app/%E4%BA%94%E7%AD%89%E5%88%86%E3%81%AE%E8%8A%B1%E5%AB%81-%E4%BA%94%E3%81%A4%E5%AD%90%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E3%83%91%E3%82%BA%E3%83%AB%E3%82%92%E4%BA%94%E7%AD%89%E5%88%86%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/id1525515096" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile · PM &amp; AD</div>
+        <div class="portfolio-title">五等分の花嫁</div>
+        <div class="portfolio-meta">総括ディレクター・アートディレクター</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://play.google.com/store/apps/details?id=jp.enish.edjm&amp;pcampaignid=web_share" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile · PM</div>
+        <div class="portfolio-title">魁!! 男塾</div>
+        <div class="portfolio-meta">日本IPゲーム化・PM・アートディレクション</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.bokumono.com/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">牧場物語</div>
+        <div class="portfolio-meta">総括ディレクター・アートディレクター</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://skygalleon.jp/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">Sky Galleon</div>
+        <div class="portfolio-meta">企画・開発・運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://naimg.playthisgame.com/global/microsite/holiaexedium/EN/main.html" rel="noopener" target="_blank">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CABAL Online</div>
+        <div class="portfolio-meta">メインPM・日本ローカライズ・運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.dekaron.co.kr/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">Dekaron</div>
+        <div class="portfolio-meta">日本ローカライズ・運営総括</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://crossfire.z8games.com/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CrossFire</div>
+        <div class="portfolio-meta">日本ローカライズ・運営総括</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.toei-anim.co.jp/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Consulting</div>
+        <div class="portfolio-title">東映アニメーション</div>
+        <div class="portfolio-meta">韓国担当コンサルタント</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-section">
+      <div class="section-eyebrow">スポーツ</div>
+      <h2 class="section-heading">これまでの<em>活動</em></h2>
+      <div id="jp-sports">
+        <div class="portfolio-grid">
+        <a class="portfolio-card" href="https://www.instagram.com/p/DLU-aK5pLRL/?igsh=OHRyaWc0dDQ5ZHJz" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Event · 2024</div>
+        <div class="portfolio-title">日韓テニスガールズ</div>
+        <div class="portfolio-meta">イベント通訳 · ビジュアルイラスト制作</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/p/DR_srhPj9e6/?igsh=Yzl3NTk0eTdxM202" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Coordination</div>
+        <div class="portfolio-title">韓国テニス協会<br/>日本視察</div>
+        <div class="portfolio-meta">視察コーディネーター</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/reels/DXrdeE-D3v6/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·One-Day Class</div>
+        <div class="portfolio-title">日本専門トレーナー<br/>韓国招聘</div>
+        <div class="portfolio-meta">ワンデイクラス企画・運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/p/DRWLxwaDyfE/?igsh=dmtoajY1aXg4Znp1" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Brand · PR</div>
+        <div class="portfolio-title">テニスブランド PRINCE</div>
+        <div class="portfolio-meta">ブランドPR · SNSコンテンツ</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://nextlevel-move.web.app/bootcamp/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Bootcamp · 2026</div>
+        <div class="portfolio-title">テニス合宿イベント運営</div>
+        <div class="portfolio-meta">日本プロテニスプレイヤー、テニス専門トレーナー、テニス栄養士の各テニス専門家による2日で変わるテニス合宿</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/bokumi.tennis" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Community</div>
+        <div class="portfolio-title">@bokumi.tennis</div>
+        <div class="portfolio-meta">テニス活動記録</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/hi.enjoytennis?igsh=MTZ3amQ0aGJpZzg3cQ==" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Community</div>
+        <div class="portfolio-title">@hi.enjoytennis</div>
+        <div class="portfolio-meta">テニス情報発信 · コミュニティ運営</div>
+        <div class="portfolio-arrow">詳細<span class="arrow">→</span></div>
+        </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ KR ══════════════ -->
+  <div class="kr-content" id="kr">
+
+    <div class="work-section">
+      <div class="section-eyebrow">略歴</div>
+      <h2 class="section-heading">경력과 <em>배경</em></h2>
+      <div id="kr-career">
+        <div class="career-grid">
+        <div class="career-block">
+        <div class="career-years">10Y</div>
+        <div class="career-field">Game Industry</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+        <li>게임 기획·아트디렉션</li>
+        <li>프로젝트 매니지먼트</li>
+        <li>일본 IP 게임화 프로젝트</li>
+        <li>라이브 서비스 운영·KPI 관리</li>
+        <li>한·일 콘텐츠 협업</li>
+        </ul>
+        </div>
+        <div class="career-block">
+        <div class="career-years">5Y</div>
+        <div class="career-field">IT Solution &amp; Consulting</div>
+        <div class="career-divider"></div>
+        <ul class="career-list">
+        <li>솔루션 기획·개발</li>
+        <li>데이터 분석·전략 수립</li>
+        <li>B2B 컨설팅 실무</li>
+        <li>일본 기업 문화 내부 경험</li>
+        </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-section">
+      <div class="section-eyebrow">게임</div>
+      <h2 class="section-heading">주요 <em>실적</em></h2>
+      <div id="kr-game">
+        <div class="portfolio-grid">
+        <a class="portfolio-card" href="https://apps.apple.com/jp/app/%E4%BA%94%E7%AD%89%E5%88%86%E3%81%AE%E8%8A%B1%E5%AB%81-%E4%BA%94%E3%81%A4%E5%AD%90%E3%81%A1%E3%82%83%E3%82%93%E3%81%AF%E3%83%91%E3%82%BA%E3%83%AB%E3%82%92%E4%BA%94%E7%AD%89%E5%88%86%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84/id1525515096" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile · PM &amp; AD</div>
+        <div class="portfolio-title">오등분의 신부</div>
+        <div class="portfolio-meta">일본 IP 게임화·PM·아트디렉션</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://play.google.com/store/apps/details?id=jp.enish.edjm&amp;pcampaignid=web_share" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile · PM</div>
+        <div class="portfolio-title">돌격! 남자훈련소</div>
+        <div class="portfolio-meta">일본 IP 게임화·운영 총괄</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.bokumono.com/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">목장이야기</div>
+        <div class="portfolio-meta">모바일 전개·PM</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://skygalleon.jp/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Mobile</div>
+        <div class="portfolio-title">Sky Galleon</div>
+        <div class="portfolio-meta">모바일 게임 운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://naimg.playthisgame.com/global/microsite/holiaexedium/EN/main.html" rel="noopener" target="_blank">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CABAL Online</div>
+        <div class="portfolio-meta">일본 전개·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.dekaron.co.kr/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">Dekaron</div>
+        <div class="portfolio-meta">일본 전개·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://crossfire.z8games.com/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">PC Online</div>
+        <div class="portfolio-title">CrossFire</div>
+        <div class="portfolio-meta">일본 전개·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.toei-anim.co.jp/" rel="noopener" target="_blank">
+        <div class="portfolio-tag">Consulting</div>
+        <div class="portfolio-title">토에이애니메이션</div>
+        <div class="portfolio-meta">한국 담당 컨설턴트</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-section">
+      <div class="section-eyebrow">스포츠</div>
+      <h2 class="section-heading">지금까지의 <em>활동</em></h2>
+      <div id="kr-sports">
+        <div class="portfolio-grid">
+        <a class="portfolio-card" href="#" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Event · 2024</div>
+        <div class="portfolio-title">한일 테니스 걸즈</div>
+        <div class="portfolio-meta">이벤트 통역 · 비주얼 일러스트 제작</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="#" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Coordination</div>
+        <div class="portfolio-title">대한테니스협회 일본 시찰</div>
+        <div class="portfolio-meta">시찰 코디네이터</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="#" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·One-Day Class</div>
+        <div class="portfolio-title">일본 테니스 전문 트레이너<br/>한국 초청</div>
+        <div class="portfolio-meta">원데이 클래스 기획·운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/p/DRWLxwaDyfE/?igsh=dmtoajY1aXg4Znp1" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Brand · PR</div>
+        <div class="portfolio-title">테니스 브랜드 PRINCE</div>
+        <div class="portfolio-meta">브랜드 홍보 · SNS 콘텐츠</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        <a class="portfolio-card" href="https://www.instagram.com/bokumi.tennis" rel="noopener" target="_blank">
+        <div class="portfolio-tag">TENNIS ·Community</div>
+        <div class="portfolio-title">@bokumi.tennis</div>
+        <div class="portfolio-meta">테니스 정보 발신 · 커뮤니티 운영</div>
+        <div class="portfolio-arrow">상세<span class="arrow">→</span></div>
+        </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+  function setLang(lang, btn) {
+    document.body.className = 'lang-' + lang;
+    document.documentElement.lang = lang === 'jp' ? 'ja' : 'ko';
+    document.getElementById('jp').className = 'jp-content' + (lang === 'jp' ? ' active' : '');
+    document.getElementById('kr').className = 'kr-content' + (lang === 'kr' ? ' active' : '');
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
