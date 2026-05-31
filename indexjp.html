@@ -395,6 +395,64 @@
     footer { padding: 24px 20px; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
   }
+
+  /* ════════════════════════════════════════
+     Mobile responsive — comprehensive fix
+     ════════════════════════════════════════ */
+
+  /* ── 모든 grid 자식 min-width 초기화 ── */
+  .why-card, .why-item, .career-block, .scope-item,
+  .program-card, .portfolio-card, .service-row,
+  .service-type, .service-name, .service-price,
+  .service-tags, .target-list li > *,
+  .card, .card-list, .card-clients { min-width: 0; }
+
+  @media (max-width: 720px) {
+
+    /* 뒤로가기 버튼 위치 조정 */
+    .back-link { top: 14px !important; left: 14px !important; font-size: 12px; padding: 5px 10px; }
+
+    /* main 상단 여백 확보 (버튼 높이만큼) */
+    main { padding-top: 68px !important; overflow-x: hidden; }
+
+    /* quote 텍스트 줄바꿈 허용 */
+    .quote { overflow: visible !important; }
+    .quote-line { white-space: normal !important; overflow: visible !important;
+                  text-overflow: unset !important; font-size: 13px; }
+    .quote-text { white-space: normal !important; font-size: 13px; }
+
+    /* service-tags 2열→1열 */
+    .service-tags { grid-template-columns: 1fr !important; }
+
+    /* target-list 오른쪽 잘림 방지 */
+    .target-list li { grid-template-columns: 24px 1fr !important; gap: 12px !important; }
+    .target-list li > div, .target-list li > p { min-width: 0; overflow-wrap: break-word; word-break: keep-all; }
+
+    /* PC 줄바꿈(<br>) 모바일에서 숨기기 */
+    .pc-br { display: none; }
+
+    /* 카드 그리드 전체 1열 */
+    .why-grid, .career-grid, .scope-grid, .program-grid { grid-template-columns: 1fr !important; }
+
+    /* 카드 내 텍스트 잘림 방지 */
+    .why-card, .why-item, .career-block, .scope-item,
+    .program-card, .portfolio-card {
+      overflow-wrap: break-word;
+      word-break: keep-all;
+    }
+
+    /* 섹션 헤딩 크기 */
+    .page-hero h1 { font-size: clamp(28px, 8vw, 40px); }
+    h2.section-title, .section-title { font-size: 18px; }
+
+    /* 카드 그리드 (indexjp/kr) 1열 */
+    .cards { grid-template-columns: 1fr !important; }
+
+    /* footer */
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+
 </style>
 </head>
 <body>
