@@ -637,6 +637,30 @@
     .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 
+
+  /* ── process-step 오른쪽 잘림 방지 ── */
+  .process-step > div { min-width: 0; overflow-wrap: break-word; word-break: keep-all; }
+  .step-title, .step-desc { min-width: 0; overflow-wrap: break-word; word-break: keep-all; }
+
+  @media (max-width: 720px) {
+    /* process-step 모바일 조정 */
+    .process-step {
+      grid-template-columns: 40px 1fr !important;
+      gap: 12px !important;
+      padding: 18px 0 !important;
+    }
+    .step-num { font-size: 22px !important; }
+    .step-title { font-size: 15px !important; }
+    .step-desc { font-size: 13px !important; }
+
+    /* <br> 태그 모바일에서 숨기기 */
+    .step-desc br { display: none; }
+    .lede br { display: none; }
+    .page-hero h1 br { display: none; }
+    .why-desc br { display: none; }
+    .intro-text br { display: none; }
+  }
+
   /* ════════════════════════════════════════
      Mobile responsive — comprehensive fix
      ════════════════════════════════════════ */
