@@ -319,6 +319,31 @@
     .lang-btn { padding: 5px 12px; font-size: 12px; }
     .career-grid { grid-template-columns: 1fr; }
   }
+
+  /* ─── Inquiry ─── */
+  .inquiry-block {
+    text-align: center;
+    margin-top: clamp(80px, 10vw, 120px);
+    padding-top: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--border);
+  }
+  .inquiry-label {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .inquiry-email {
+    font-size: clamp(22px, 3vw, 32px);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .inquiry-email:hover { color: var(--text-dim); }
+
 </style>
 </head>
 <body class="lang-jp">
@@ -614,6 +639,12 @@
       </div>
     </div>
 
+  </div>
+
+
+  <div class="inquiry-block">
+    <div class="inquiry-label">Contact</div>
+    <a href="mailto:bella.pistis@gmail.com" class="inquiry-email">bella.pistis@gmail.com</a>
   </div>
 
 </main>
