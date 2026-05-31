@@ -53,6 +53,7 @@
     font-weight: 500;
     min-height: 100vh;
     overflow-x: hidden;
+    overflow-wrap: break-word;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -77,7 +78,9 @@
     text-decoration: none;
     padding: 7px 12px;
     border: 1px solid var(--border);
-    background: var(--bg);
+    background: rgba(252,252,252,0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.25s ease;
   }
 
